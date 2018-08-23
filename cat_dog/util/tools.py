@@ -27,7 +27,7 @@ def check_previous_models():
     available_models.sort(key=lambda x: get_time_stamp(x))
     if available_models :
         print('Do you want to keep and load previous models ?')
-        key = input('Please type in k(keep) / d(delete):')
+        key = input('Please type in k(keep) / d(delete): ')
         if key == 'k':
             model_name = 'checkpoints/' + available_models[-1]
             return model_name
