@@ -15,6 +15,12 @@ cf = Configuration()
 
 
 def dense_to_one_hot(origin_tensor, num_of_classes):
+    """
+    Convert a dense representation of one vector to one-hot representation
+    :param origin_tensor:
+    :param num_of_classes:
+    :return:
+    """
     import torch as t
     origin_tensor = origin_tensor.view(-1, 1)
     origin_tensor = origin_tensor.long()
@@ -22,6 +28,10 @@ def dense_to_one_hot(origin_tensor, num_of_classes):
 
 
 def check_previous_models():
+    """
+    check whether there exist previous models, if true, then let user choose whether to use it.
+    :return:
+    """
     import os
     available_models = os.listdir(cf.checkpoint_dir_path)
     available_models.sort(key=lambda x: get_time_stamp(x))
@@ -42,32 +52,29 @@ def check_previous_models():
 
 
 def mylog(file_name, log_content):
+    """
+    define a logger function
+    :param file_name:  the name of the log file
+    :param log_content:  the content to be logged
+    :return:
+    """
     with open(cf.log_dir_path + file_name + '.log', 'a+') as file:
         file.write(log_content + '\n')
         file.close()
 
 
 def get_time_stamp(str, time_format=cf.time_format):
+    """
+    given a time string in a particular format, get the time stamp represented by this string
+    :param str: given time string
+    :param time_format: time format used
+    :return:  time stamp
+    """
     import time
     import datetime
     import re
     timestr = re.findall('>_(.*)\.', str)[0]
     return time.mktime(datetime.datetime.strptime(timestr, time_format).timetuple())
-
-
-def model_evaluate(model, val_data):
-    model.eval()
-    cnt = 0
-    for idx,data in enumerate(val_data):
-        input, label = data
-        input = t.autograd.Variable(input, volatile=True)
-        label = t.autograd.Variable(label.long(), volatile=True)
-        score = t.argmax(model(input), dim=1)
-        if label == score:
-            cnt +=1
-    model.train()
-    accuracy = cnt / (idx + 1)
-    return accuracy
 
 
 if __name__ == '__main__':

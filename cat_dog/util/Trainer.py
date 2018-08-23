@@ -5,21 +5,21 @@
 
 File Name : Trainer,py
 File Description : Define the Trainer class for model training
-Author : Liangwei Li
+Author : https://github.com/pytorch/pytorch/blob/master/torch/utils/trainer/trainer.py
 
 """
 import heapq
 import time
 
-import torch as t
-
 from config import Configuration
 cf = Configuration
 from util.tools import *
-from data_related.load_data import test_cat, test_dog
 
 
 class Trainer:
+    """
+    define a trainer class to train model
+    """
     def __init__(self, model, criterion, optimizer, dataset, val_dataset):
         self.model = model
         self.criterion = criterion
