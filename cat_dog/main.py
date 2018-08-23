@@ -3,7 +3,7 @@
 """
 
 File Name : main.py
-File Description : This is the file where we do the training, testing, validating job.
+File Description : This is the file where we do the training, testing, validating job
 Author : Liangwei Li
 
 """
