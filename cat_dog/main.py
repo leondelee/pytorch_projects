@@ -7,9 +7,6 @@ File Description : This is the file where we do the training, testing, validatin
 Author : Liangwei Li
 
 """
-import os
-import time
-
 import torch as t
 
 from util.Trainer import Trainer
@@ -21,6 +18,12 @@ from util.tools import check_previous_models
 
 
 def train(model, train_data):
+    """
+    Train method: train the model
+    :param model: which model to use
+    :param train_data: define the training data
+    :return:
+    """
     criterion = t.nn.CrossEntropyLoss()
     optimizer = t.optim.Adam(model.parameters(), lr=cf.learning_rate, weight_decay=cf.weight_decay)
     trainer = Trainer(model=model, criterion=criterion, optimizer=optimizer, dataset=dataset, val_dataset=dev_all)
@@ -28,6 +31,12 @@ def train(model, train_data):
 
 
 def evaluate(model, eval_data):
+    """
+    Evaluate the model, this method will be called during the training processing at every epoch.
+    :param model:  define which model to be evaluated.
+    :param eval_data:  define the evaluating data to be used.
+    :return:
+    """
     model.eval()
     cnt = 0
     total = len(eval_data)
@@ -48,8 +57,8 @@ def evaluate(model, eval_data):
 
 if __name__ == '__main__':
     model = ResNet34(in_channels=3, out_classes=cf.num_classes)
-    model_flag = check_previous_models()
+    model_flag = check_previous_models()                       # check if there exist previous models
     if model_flag != None:
-        model.load(model_flag)
+        model.load(model_flag)                                 # if true, it will let the the user to choose whether to use previous model
     # train(model, training_all)
     evaluate(model, dev_all)
