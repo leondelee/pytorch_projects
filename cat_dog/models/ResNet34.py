@@ -14,8 +14,18 @@ from models.BasicModel import BasicModel
 
 
 class BasicBlock(BasicModel):
-
+    """
+    Define a basic block of ResNet
+    """
     def __init__(self, block_in_channels, block_out_channels, stride=1, shortcut=None):
+        """
+        __init__() method
+        :param block_in_channels: number of channels of input data
+        :param block_out_channels: number of channels of output data
+        :param stride: stride used in convolutional network
+        :param shortcut: shortcut function
+        """
+
         super(BasicBlock, self).__init__()
         self.block_shortcut = shortcut
         self.block_residual = t.nn.Sequential(
@@ -35,6 +45,9 @@ class BasicBlock(BasicModel):
 
 
 class ResNet34(BasicModel):
+    """
+    stack all the basic blocks needed and build the complete ResNet
+    """
 
     def __init__(self, in_channels, out_classes=2, shortcut=None):
         super(ResNet34, self).__init__()
@@ -55,6 +68,14 @@ class ResNet34(BasicModel):
         self.out_fc = t.nn.Linear(512, self.out_classes)
 
     def make_layer(self, in_channels, out_channels, num_of_blocks, stride=1):
+        """
+        build one part of ResNet
+        :param in_channels: same
+        :param out_channels: same
+        :param num_of_blocks: build how many blocks
+        :param stride:  same
+        :return:
+        """
         assert num_of_blocks >= 2
         shortcut = t.nn.Sequential(
             t.nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=1, stride=stride),
