@@ -16,7 +16,7 @@ This project provides a pytorch version solution to a classic Kaggle competition
 </br> 
 </br> Mainly, ResNet34 is used as the model to be trained. However, in .models, any possible model can be difined and thus trained. 
 </br>
-</br> **To begin the training process on your own computer**, some specific dependent packages are required, which are listed in requirements.txt. When the environment is set, your need to make some changes of the parameters "train_all_path, test_all_path, train_dog_path, test_dog_path, train_cat_path, test_cat_path " in config.py, which will be used to define the location of the data set. After this, run main.py and every thing should work normally. 
+</br> **To begin the training process on your own computer**, some specific dependent packages are required, which are listed in requirements.txt. When the environment is set, your need to make some changes of the parameters "train_all_path, test_all_path " in config.py, which will be used to define the location of the data set. After this, run main.py and every thing should work normally. 
 </br>
 </br>To test the proformance of the model, make one change at the end of main.py as follows:
 
