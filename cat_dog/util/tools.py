@@ -77,6 +77,7 @@ def get_time_stamp(str, time_format=cf.time_format):
     return time.mktime(datetime.datetime.strptime(timestr, time_format).timetuple())
 
 
+
 if __name__ == '__main__':
     import os
     av = os.listdir(cf.checkpoint_dir_path)

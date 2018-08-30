@@ -75,11 +75,9 @@ class Trainer:
             self.step_one_epoch()
             self.call_plugins('epoch', epoch)
             self.model.save()
-            acc = model_evaluate(self.model, self.val_dataset)
             log_content = 'Loss at epoch{epoch} is {loss}.\nAccuracy is {acc}'.format(
                 epoch=epoch,
-                loss=self.loss,
-                acc=acc
+                loss=self.loss
             )
             print(log_content)
             mylog(current_time, log_content)
