@@ -12,7 +12,7 @@ Author: Liangwei Li
 
 This project provides a pytorch version solution to a classic Kaggle competition: [Dogs and Cats](https://www.kaggle.com/tongpython/cat-and-dog). Every participant is supposed to train a model for this binary classification: to predict whether a picture represents a cat or a dog. In this project, one version is completed with pytorch-cpu and some other relative packages of python. It can record log and model state automatically at every epoch, which means it can start even if an interuption occurs. 
 </br>
-</br> Training data as well as test data are included in this project.
+</br> Training data as well as test data are excluded in this project. You need to download it yourself.
 </br> 
 </br> Mainly, ResNet34 is used as the model to be trained. However, in .models, any possible model can be difined and thus trained. 
 </br>
